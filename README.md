@@ -1,34 +1,58 @@
-# Loan Approval Prediction App 💰
+# Loan Approval Predictor – Live & Production Ready
 
-Live app: https://your-username-loan-approval-app.streamlit.app (replace with your actual link after deployment)
+Live App: https://predictyourloans.streamlit.app
 
-A production-ready machine learning web app that instantly predicts whether a bank loan will be **Approved** or **Rejected** based on applicant profile — achieving **86% accuracy** on real-world data.
+A complete end-to-end machine learning web application that instantly predicts whether a bank will **approve** or **reject** a loan application — achieving **86.46% accuracy** on unseen data.
 
-Built end-to-end from raw CSV → cleaning → feature engineering → XGBoost model → Streamlit deployment.
+Built, trained, compared 5 models, and deployed live in a single session.
 
-## Features
-- 86% test accuracy (top 5% on this classic dataset)
-- Real-time prediction with confidence score
-- Smart feature engineering (EMI, income ratios, log transforms)
-- Handles the famous "Credit_History missing → treat as 1" trick correctly
-- Clean, mobile-friendly UI with suggestions on rejection
+### Live Model Comparison (runs automatically on every cold start) ###
+```text
+Training models...
 
-## Model Performance
-| Model              | Test Accuracy |
-|--------------------|---------------|
-| Random Forest (final)    | **0.86**      |
-| XGBoost      | 0.83          |
-| LightGBM           | 0.85          |
-| Logistic Regression| 0.83          |
+RandomForest         → Test Accuracy: 0.8646  ← WINNER
+LightGBM             → Test Accuracy: 0.8438
+LogisticRegression   → Test Accuracy: 0.8438
+XGBoost_Tuned        → Test Accuracy: 0.8333
+XGBoost              → Test Accuracy: 0.8229
 
-## Tech Stack
-- Python
-- Pandas, NumPy
-- Scikit-learn, XGBoost
-- Streamlit (frontend + deployment)
-- Joblib (model persistence)
+==================================================
+WINNER: RandomForest
+Accuracy: 0.8646
+Model saved as → best_loan_model.joblib
+==================================================
 
-## How to Run Locally
-```bash
+Features:
+
+Real-time loan approval prediction
+Confidence score displayed
+Actionable rejection suggestions (improve credit history, reduce loan amount, etc.)
+Smart feature engineering:EMI (monthly installment)
+Total Income + Loan-to-Income ratio
+Log transformation on skewed features
+Correct handling of missing Credit_History (the famous +5–7% accuracy trick)
+
+Fully responsive – works perfectly on mobile
+
+Tech Stack
+
+Python
+Pandas, NumPy
+Scikit-learn, Joblib
+Streamlit (frontend + free hosting on Streamlit Cloud)
+
+├── loan.py                  → Main app (Streamlit UI + auto model training & selection)
+├── best_loan_model.joblib   → Trained RandomForest (86.46% accuracy)
+├── requirements.txt         → Minimal, deployment-optimized dependencies
+├── README.md                → This file
+
+How to Run Locally
+
+bash
+git clone https://github.com/your-username/loan-status-prediction.git
+cd loan-status-prediction
 pip install -r requirements.txt
 streamlit run loan.py
+
+
+
